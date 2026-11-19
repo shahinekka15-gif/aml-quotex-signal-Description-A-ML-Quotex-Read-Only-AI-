@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>A ML – Quotex Signal</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#eef4ff;font-family:Arial,sans-serif}
+header{padding:22px 18px;background:#111d30;border-bottom:1px solid #26364d}
+h1{margin:0;font-size:25px;letter-spacing:.5px}header p{margin:6px 0 0;color:#a9bad2;font-size:13px}
+main{padding:16px;max-width:620px;margin:auto}.tag{display:inline-block;padding:6px 10px;border-radius:20px;background:#193b30;color:#7ef0b3;font-size:11px;font-weight:bold}
+.card{background:#142137;border:1px solid #263852;border-radius:15px;padding:16px;margin:14px 0}
+.label{font-size:12px;color:#9db0ca}.value{font-size:21px;font-weight:bold;margin-top:6px}
+select,button{width:100%;padding:13px;border-radius:10px;border:1px solid #344967;background:#0e192b;color:#fff;font-size:15px}
+button{background:#2467d5;border:0;font-weight:bold;margin-top:12px}
+.signal{font-size:30px;font-weight:800;margin:8px 0}.muted{color:#a9bad2;font-size:13px;line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.warn{border-left:3px solid #e7b34e;padding:10px 12px;background:#2a251b;border-radius:7px;color:#f4d99c;font-size:12px;line-height:1.5}
+footer{text-align:center;color:#7f91aa;font-size:11px;padding:18px}
+</style>
+</head>
+<body>
+<header><h1>A ML <span style="color:#55a0ff">AI</span></h1><p>Quotex Read-Only Signal Bot · 1 Minute</p></header>
+<main>
+  <span class="tag">READ ONLY · NO AUTO TRADING</span>
+  <section class="card">
+    <div class="label">MARKET নির্বাচন করুন</div>
+    <select id="market"><option>EUR/USD</option><option>GBP/USD</option><option>USD/JPY</option><option>EUR/USD (OTC)</option><option>GBP/USD (OTC)</option></select>
+    <div class="grid" style="margin-top:14px">
+      <div><div class="label">TIMEFRAME</div><div class="value">1 Minute</div></div>
+      <div><div class="label">ডেটা অবস্থা</div><div class="value" style="color:#f4c56b">ডেমো</div></div>
+    </div>
+  </section>
+  <section class="card">
+    <div class="label">পরবর্তী ক্যান্ডেল বিশ্লেষণ</div>
+    <div class="signal" id="signal">WAIT</div>
+    <div class="muted" id="desc">লাইভ ডেটা সংযুক্ত নয়। ডেমো মোডে কোনো বাস্তব BUY/SELL পূর্বাভাস দেওয়া হচ্ছে না।</div>
+    <button onclick="demo()">ডেমো ইন্টারফেস পরীক্ষা করুন</button>
+  </section>
+  <div class="grid">
+    <section class="card"><div class="label">RSI (ডেমো)</div><div class="value" id="rsi">—</div></section>
+    <section class="card"><div class="label">MACD (ডেমো)</div><div class="value" id="macd">—</div></section>
+  </div>
+  <section class="card">
+    <div class="label">পরবর্তী ধাপ</div>
+    <p class="muted">প্রথমে নির্ভরযোগ্য ও অনুমোদিত মার্কেট ডেটা উৎস যুক্ত করতে হবে। তারপর ক্যান্ডেল, RSI ও MACD হিসাব করে সিগন্যাল পরীক্ষা করা হবে। OTC ও সাধারণ মার্কেটের ডেটা আলাদা করে যাচাই করতে হবে।</p>
+  </section>
+  <div class="warn">সতর্কতা: এই সংস্করণটি শুধু UI/ডেমো। এটি Quotex-এর সঙ্গে সংযুক্ত নয়, লাইভ দাম দেখায় না এবং ট্রেডিং পরামর্শ দেয় না। পরবর্তী ক্যান্ডেলের রং নিশ্চিতভাবে জানা যায় না।</div>
+</main>
+<footer>A ML · Free starter prototype</footer>
+<script>
+function demo(){
+ const r= Math.floor(35+Math.random()*31);
+ document.getElementById('rsi').textContent=r;
+ document.getElementById('macd').textContent=(Math.random()>.5?'+':'−')+(Math.random()*.02).toFixed(3);
+ document.getElementById('signal').textContent='WAIT';
+ document.getElementById('signal').style.color='#f4c56b';
+ document.getElementById('desc').textContent='ডেমো ডেটা দেখানো হয়েছে—এটি বাস্তব মার্কেট ডেটা বা পূর্বাভাস নয়।';
+}
+</script>
+</body>
+</html>
